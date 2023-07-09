@@ -1,0 +1,22 @@
+{% extends "quizzes/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div id="welcome-box" class="jumbotron">
+        <div class="container">
+            {% if user.is_authenticated %}
+                <h1>Hello <b>{{ user.username }}</b>!</h1>
+                <h1>Welcome to Quizzer!</h1>
+                <br>
+                <a href="{% url 'quizzes' %}" class="btn btn-primary btn-lg">Find a Quiz</a>
+                <a href="{% url 'newQuiz' %}" class="btn btn-primary btn-lg">Make a Quiz</a>
+            {% else %}
+                <h1>Welcome to Quizzer!</h1>
+                <br>
+                <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Login</a>
+                <h4 style="display:inline; margin:0 10px">or</h4>
+                <a href="{% url 'register' %}" class="btn btn-primary btn-lg">Register</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

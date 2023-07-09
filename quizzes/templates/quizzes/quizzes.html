@@ -1,0 +1,39 @@
+{% extends "quizzes/layout.html" %}
+{% load static %}
+
+{% block script %}
+    <script src="{% static 'quizzes/search.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="main">
+        {% if filterCategory %}
+            <h1 id="filterCategory" data-category_id="{{ filterCategory.id }}">Quizzes in <b>{{ filterCategory.name }}</b></h1>
+        {% else %}
+            <h1 id="filterCategory" data-category_id="none">All Quizzes</h1>
+        {% endif %}
+        
+        <input id="search-box" class="form-control form-control-lg" type="text" name="search" placeholder="Search" required>
+        <br>
+         
+        <div id="quizzes" class="row row-cols-1 row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-4">
+            {% for quiz in quizzes %}
+                <div class="col">
+                    <div id="{{ quiz.id }}" class="card quiz-card">
+                        <h4>{{ quiz.name }}</h4>
+                        <h6>In {{ quiz.category.name }}</h6>
+                        <p>{{ quiz.description }}</p>
+                        {% if quiz.questionNumber == 1 %}
+                            <p>1 question</p>
+                        {% else %}
+                            <p>{{ quiz.questionNumber }} questions</p>
+                        {% endif %}
+                        <p>Created by {{ quiz.creator.username }}<br><i>{{ quiz.timestamp }}</i></p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <br><br>
+        <h5 id="no-results" class="hidden">No results matched your search query.</h5>
+    </div>
+{% endblock %}

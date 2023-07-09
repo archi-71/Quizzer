@@ -1,0 +1,87 @@
+{% extends "quizzes/layout.html" %}
+{% load static %}
+{% load extraTags %}
+
+{% block script %}
+    {% if not results %}
+        <script src="{% static 'quizzes/quiz.js' %}"></script>
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% if not results %}
+        <div class="progress fixed-top">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 0%">0%</div>
+        </div>
+    {% endif %}
+    <div class="main">
+        <h1>{{ quiz.name }}</h1>
+        <p>By {{ quiz.creator.username }}</p>
+        <p>{{ quiz.description }}</p>
+        {% if results %}
+            {% if percentage >= 80 %}
+                <div class="alert alert-success" role="alert">
+                    <h3 class="alert-heading">Well Done! You scored {{ score }} ({{ percentage }}%)</h3>
+                    <h6>You can review your answers below.</h6>
+                </div>
+            {% else %}
+                <div class="alert alert-info" role="alert">
+                    <h3 class="alert-heading">You scored {{ score }} ({{ percentage }}%)</h3>
+                    <h6>You can review your answers below.</h6>
+                </div>
+            {% endif %}
+        {% endif %}
+
+        <form action="{% url 'quiz' quiz.id %}" method="post">
+            {% csrf_token %}
+            <div id="questions">
+                {% for question in questions %}
+                <br>
+                    <div class="jumbotron">
+                        <div class="content">
+                            {% if results %}
+                                {% with data=results|getFromDict:question.number %}
+                                    {% if data.result %}
+                                        <h2 class="text-success float-right">Correct!</h2>
+                                    {% else %}
+                                        <h2 class="text-danger float-right">Incorrect</h2>
+                                    {% endif %}
+                                {% endwith %}
+                            {% endif %}
+                            <h3>Question {{ question.number }}</h3>
+                            <br>
+                            <h5>{{ question.question }}</h5>
+                            <br>
+                            <div class="row row-cols-1 row-cols-xl-2 row-cols-lg-2 row-cols-md-1 row-cols-sm-1 g-4 justify-content-center">
+                                {% for answer in question.answers.all %}
+                                    <div class="col text-center">
+                                        {% if results %}
+                                            {% with data=results|getFromDict:question.number %}
+                                                {% if data|getFromDict:answer.number == "correct"%}
+                                                    <div class="review-option bg-success text-light">{{ answer.answer }}</div>
+                                                {% elif data|getFromDict:answer.number == "incorrect" %}
+                                                    <div class="review-option bg-danger text-light">{{ answer.answer }}</div>
+                                                {% else %}
+                                                    <div class="review-option">{{ answer.answer }}</div>
+                                                {% endif %}
+                                            {% endwith %}
+                                        {% else %}
+                                            <input id="{{ question.number }}-{{ answer.number }}" class="btn-check" name="{{ question.number }}" type="radio" value="{{ answer.number }}">
+                                            <label for="{{ question.number }}-{{ answer.number }}" class="btn option-button">{{ answer.answer }}</label>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <br>
+            {% if results %}
+                <a href="{% url 'quizzes' %}" class="btn btn-primary btn-lg float-right">Finish</a>
+            {% else %}
+                <input id="submit-answers" class="btn btn-primary btn-lg float-right" type="submit" value="Submit Answers" disabled>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

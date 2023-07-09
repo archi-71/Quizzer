@@ -1,0 +1,227 @@
+.main{
+    margin: 50px 20px;
+}
+
+nav{
+    z-index: 2;
+}
+
+.float-right{
+    float: right;
+}
+
+.jumbotron{
+    background-color: #DDDDDD;
+    padding: 50px 50px;
+    border-radius: 10px;
+    margin: auto;
+    box-shadow: 0 0 20px 2px #DDDDDD;
+}
+
+.card{
+    margin: auto;
+    padding: 10px;
+    background-color: #DDDDDD;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 0 20px 2px #DDDDDD
+}
+
+.quiz-card:hover{
+    box-shadow: 0 0 20px 2px #999999;
+    cursor: pointer;
+} 
+
+a{
+    margin:5px;
+    text-decoration: none;
+}
+
+.nav-link{
+    border-radius: 5px;
+}
+
+.nav-link:hover{
+    background-color: rgb(23,162,184);
+    border-radius: 5px;
+}
+
+.nav-link:active, .nav-link:focus{
+    background-color: rgb(17,122,139);
+    outline: 4px solid rgb(139,198,208);
+    border-radius: 5px;
+    outline-offset: 0px;
+}
+
+div.dropdown-menu > a.dropdown-item:hover{
+    background-color: rgb(23,162,184);
+    border-radius: 5px;
+    width: 94%;
+}
+
+div.dropdown-menu > a.dropdown-item:active, div.dropdown-menu > a.dropdown-item:focus{
+    background-color: rgb(17,122,139);
+    outline: 4px solid rgb(139,198,208);
+    border-radius: 5px;
+    outline-offset: 0px;
+    width: 94%;
+}
+
+.btn-primary{
+    margin:10px;
+    background-color: rgb(23,162,184);
+    border-color: rgb(23,162,184)
+}
+
+.btn-primary:hover{
+    background-color: rgb(17,122,139);
+    border-color: rgb(17,122,139);
+}
+
+.btn-primary:active, .btn-primary:focus{
+    background-color: rgb(17,122,139);
+    border-color: rgb(17,122,139);
+    outline: 4px solid rgb(139,198,208);
+}
+
+.btn-primary:disabled{
+    background-color: rgb(23,162,184);
+    border-color: rgb(23,162,184)
+}
+
+#welcome-box{
+    margin-top:100px;
+}
+
+#search-box{
+    margin: auto;
+}
+
+@keyframes showBox{
+    0%{
+        max-height: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin-top: 0px;
+        
+    }
+    100%{
+        max-height: 1000px;
+        padding-top: auto;
+        padding-bottom: auto;
+        margin-top: 20px;
+        
+    }
+}
+
+.jumbotron.question{
+    margin-top: 20px;
+    animation-name: showBox;
+    animation-duration: 0.5s;
+    animation-play-state: paused;
+    animation-timing-function: ease-in;
+}
+
+@keyframes showContent{
+    0%{
+        opacity: 0%;
+    }
+    100%{
+        opacity: 100%;
+    }
+}
+
+.jumbotron.question .content{
+    animation-name: showContent;
+    animation-duration: 0.5s;
+    animation-play-state: paused;
+    animation-timing-function: ease-in;
+}
+
+.delete{
+    border:none;
+    background-color: transparent;
+}
+
+.fa-xmark{
+    pointer-events: none;
+}
+
+.option-button{
+    font-size: 25px;
+    color: rgb(155,157,158);
+    background-color: #212529;
+    border-color: #212529;
+    padding: 20px;
+    width: 80%;
+}
+
+.option-button:hover{
+    color: rgb(197, 232, 234);
+    background-color: rgb(23,162,184);
+    border-color: rgb(23,162,184);
+    padding: 20px;
+    width: 80%;
+}
+
+.btn-check:active + .option-button, .btn-check:focus + .option-button, .btn-check:checked + .option-button{
+    color: rgb(197, 232, 234);
+    background-color: rgb(17,122,139);
+    border-color: rgb(17,122,139);
+    outline: 4px solid rgb(139,198,208);
+    padding: 20px;
+    width: 80%;
+}
+
+.review-option{
+    font-size: 25px;
+    color: rgb(155,157,158);
+    background-color: #212529;
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    margin: auto;
+}
+
+.progress{
+    margin-top: 66px;
+    border-radius: 0px;
+    height: 20px;
+    z-index: 1;
+}
+
+.hidden{
+    display:none;
+}
+
+.underline-link:hover{
+    text-decoration: underline;
+}
+
+.stat{
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+#average-score{
+    font-family: 'Calibri';
+    font-size: 50px;
+    font-weight: lighter;
+}
+
+#average-score-box{
+    background-color: #BBBBBB;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px 40px;
+}
+
+#sort{
+    width: 200px;
+    display: inline;
+    margin-left: 10px;
+}
+
+th{
+    width:33vw;
+}

@@ -1,0 +1,37 @@
+{% extends "quizzes/layout.html" %}
+{% load static %}
+
+{% block script %}
+    <script src="{% static 'quizzes/leaderboard.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="main">
+        <h1>Leaderboard</h1>
+
+        <label for="sort"><h6>Sort By:</h6></label>
+        <select id="sort" class="form-select">
+            <option value="2-Average Score">Average Score</option>
+            <option value="3-Correct Answers">Correct Answers</option>
+            <option value="4-Quizzes Completed">Quizzes Completed</option>
+            <option value="5-Quizzes Created">Quizzes Created</option>
+        </select>
+
+        <br><br>
+
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                <th scope="col" colspan="1">Rank</th>
+                <th scope="col" colspan="1">User</th>
+                <th id="sortBy" scope="col" colspan="1">Average Score</th>
+                </tr>
+            </thead>
+            <tbody id="users">
+            </tbody>
+        </table>
+
+        
+    </div>
+
+{% endblock %}

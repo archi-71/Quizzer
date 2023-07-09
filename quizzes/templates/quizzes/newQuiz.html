@@ -1,0 +1,45 @@
+{% extends "quizzes/layout.html" %}
+{% load static %}
+
+{% block script %}
+    <script src="{% static 'quizzes/newQuiz.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="main">
+        <h1>New Quiz</h1>
+        <form action="{% url 'newQuiz' %}" method="post">
+            {% csrf_token %}
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="form-group col-8">
+                        <label for="name"><h6>Name:</h6></label>
+                        <input id="name" class="form-control" type="text" name="name" placeholder="Name" required>
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="category"><h6>Category:</h6></label>
+                        <select id="category" class="form-select" name="category">
+                            {% for category in categories %}
+                                <option value="{{ category.id }}">{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="description"><h6>Description:</h6></label>
+                    <textarea id="description" class="form-control" type="text" name="description" placeholder="Description" required></textarea>
+                </div>
+            </div>
+
+            <div id="questions">
+            </div>
+            
+            <br>
+
+            <button id="add-question" class="btn btn-primary" type="button">Add Question</button>
+            <br>
+            <input class="btn btn-primary btn-lg float-right" type="submit" value="Save Quiz">
+        </form>
+    </div>
+{% endblock %}

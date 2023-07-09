@@ -1,0 +1,41 @@
+{% extends "quizzes/layout.html" %}
+{% load static %}
+
+{% block script %}
+    <script src="{% static 'quizzes/profile.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="main">
+        <div class="jumbotron col-lg-4 col-md-6 col-sm-8 text-center">
+            <h1>{{ profile.username }}'s Profile</h1>
+            <br>
+            <div class="row row-cols-1 row-cols-xl-2 row-cols-lg-2 row-cols-md-1 row-cols-sm-1 g-4 justify-content-center">
+                <div class="col text-center stat"><i>Quizzes created:</i><br><b>{{ profile.quizzesCreated }}</b></div>
+                <div class="col text-center stat"><i>Quizzes completed:</i><br><b>{{ profile.quizzesCompleted }}</b></div>
+            </div>
+            {% if profile.averageScore %}
+                <div class="col text-center stat"><i>Average Score:</i><br><p id="average-score">{{ profile.averageScore }}%</p></div>
+            {% else %}
+                <div class="col text-center stat"><i>Average Score:</i><br><p id="average-score">-</p></div>
+            {% endif %}
+            
+            <div class="row row-cols-1 row-cols-xl-2 row-cols-lg-2 row-cols-md-1 row-cols-sm-1 g-4 justify-content-center">
+                <div class="col text-center stat"><i>Correct answers:</i><br><b>{{ profile.correctAnswers }}</b></div>
+                <div class="col text-center stat"><i>Incorrect answers:</i><br><b>{{ profile.incorrectAnswers }}</b></div>
+                {% if profile.bestCategory %}
+                    <div class="col text-center stat"><i>Best Category:</i><br><b>{{ profile.bestCategory }}</b></div>
+                {% else %}
+                <div class="col text-center stat"><i>Best Category:</i><br><b>-</b></div>
+                {% endif %}
+                {% if profile.worstCategory %}
+                    <div class="col text-center stat"><i>Worst Category:</i><br><b>{{ profile.worstCategory }}</b></div> 
+                {% else %}
+                    <div class="col text-center stat"><i>Worst Category:</i><br><b>-</b></div> 
+                {% endif %}
+            </div>
+            <br>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "quizzes/layout.html" %}
+
+{% block body %}
+    <div class="main">
+        <div class="jumbotron col-lg-4 col-md-6 col-sm-8 text-center">
+            <h1>Register</h1>
+
+            {% if message %}
+                <div>{{ message }}</div>
+            {% endif %}
+            <br>
+            <form action="{% url 'register' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input class="form-control form-control-lg" autofocus type="text" name="username" placeholder="Username" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="email" name="email" placeholder="Email Address" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="password" name="password" placeholder="Password" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input class="form-control form-control-lg" type="password" name="confirmation" placeholder="Confirm Password" required>
+                </div>
+                <br>
+                <input class="btn btn-primary btn-lg" type="submit" value="Register">
+            </form>
+            <br>
+            Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+        </div>
+    </div>
+{% endblock %}
